@@ -27,3 +27,4 @@ Within the `web` container, install Magento:
 
 ## Possible improvements to the stack
 - Add Redis
+- Add `magerun2` to the image
