@@ -1,0 +1,28 @@
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=example
+      - MYSQL_USER=example
+      - MYSQL_PASSWORD=example
+  web:
+    build: docker-compose-files/apache
+    ports:
+      - 8080:80
+    links:
+      - mysql
+      - es
+    volumes:
+      - ./src:/var/www/html
+      - ./magento-bin:/opt/magento-bin
+      - ~/.composer/cache:/var/www/.composer/cache
+      - ~/.composer/auth.json:/var/www/.composer/auth.json
+  es:
+    image: elasticsearch:7.17.5
+    ports:
+      - 9200
+    environment:
+        - discovery.type=single-node
