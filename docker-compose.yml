@@ -26,3 +26,7 @@ services:
       - 9200
     environment:
         - discovery.type=single-node
+  redis:
+    image: redis:7.0
+    ports:
+      - 6379
